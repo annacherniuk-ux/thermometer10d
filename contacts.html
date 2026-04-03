@@ -25,12 +25,8 @@
 <section id="form" class="py-20">
     <div class="max-w-xl mx-auto px-6 bg-white p-8 rounded-2xl shadow-xl">
       <h2 class="text-3xl font-bold mb-6 text-center">Оформити замовлення</h2>
-      <form class="space-y-4">
-        <input type="text" placeholder="Ваше ім'я" class="w-full p-4 border rounded-xl" required>
-        <input type="tel" placeholder="Ваш телефон" class="w-full p-4 border rounded-xl" required>
-        <button type="submit" class="w-full bg-indigo-600 text-white p-4 rounded-xl font-bold hover:scale-105 transition">Замовити</button>
-      </form>
-	   <script>
+      <form class="mt-6 space-y-4"> <input type="text" placeholder="Ваше ім'я" class="w-full p-3 border rounded"> <input type="tel" placeholder="Телефон" class="w-full p-3 border rounded"> <textarea placeholder="Ваше повідомлення" class="w-full p-3 border rounded"></textarea> <button class="bg-blue-600 text-white px-6 py-3 rounded">Відправити</button> </form>
+<script>
 const form = document.querySelector("form");
 
 form.addEventListener("submit", async (e) => {
@@ -38,15 +34,20 @@ form.addEventListener("submit", async (e) => {
 
   const name = form.querySelector("input[type='text']").value;
   const phone = form.querySelector("input[type='tel']").value;
+  const message = form.querySelector("textarea").value;
 
   const data = {
     name: name,
-    phone: phone
+    phone: phone,
+    message: message
   };
 
   try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbxbnMTczj20G78dThR3uYZiVUoJVNb_K97r-H_L07UwWUfZYL_Vz5V-INZATL1z1RGx/exec", {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbwr4GQfhtu5CDxKYlXKG8HYgl1rjbUoZJNeyCg7TMw7Eirfcgbo81HZcw2-eqO_J-KY/exec", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify(data)
     });
 
@@ -64,7 +65,7 @@ form.addEventListener("submit", async (e) => {
   }
 });
 </script>
-</script>
+	</script>
 <section class="py-10 text-center">
   <h2 class="text-2xl font-bold mb-4">Ми працюємо по всій Європі</h2>
 <img src="images/8.png" usemap="#shape-map" width="2400" height="1600">
